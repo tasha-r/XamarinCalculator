@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinCalculator.UWP", "Xa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinCalculator", "XamarinCalculator\XamarinCalculator\XamarinCalculator.csproj", "{ED24D05C-217A-4F2A-991D-F8BB40F197FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinCalculator.Tests", "XamarinCalculatorTests\XamarinCalculator.Tests.csproj", "{33ACE66A-23B9-42ED-814E-8EB3F510F61C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinCalculator.Tests", "XamarinCalculator.Tests\XamarinCalculator.Tests.csproj", "{33ACE66A-23B9-42ED-814E-8EB3F510F61C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
