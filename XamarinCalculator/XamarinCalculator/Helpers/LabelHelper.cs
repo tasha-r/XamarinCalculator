@@ -20,14 +20,13 @@ namespace XamarinCalculator.Helpers
 
         public static Label CreateResultLabel(string text)
         {
-            return null;
-            //return new Label
-            //{
-            //    Text = text,
-            //    HorizontalTextAlignment = TextAlignment.Start,
-            //    FontFamily = "Arial",
-            //    FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Small"),
-            //};
+            return new Label
+            {
+                Text = text,
+                HorizontalTextAlignment = TextAlignment.Start,
+                FontFamily = "Arial",
+                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Small"),
+            };
         }
     }
 }
