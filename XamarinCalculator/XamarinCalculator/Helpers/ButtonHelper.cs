@@ -23,7 +23,7 @@ namespace XamarinCalculator.Helpers
                 Text = text,
                 BackgroundColor = backgroundColour,
                 TextColor = textColour,
-                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Medium"),
+                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Large"),
                 CornerRadius = 0,
             };
         }

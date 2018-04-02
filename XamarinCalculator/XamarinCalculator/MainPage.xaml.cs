@@ -45,6 +45,7 @@ namespace XamarinCalculator
             GridHelper.AddItemToGrid(grid, titleLabel, 0, 0, 1, 4);
             GridHelper.AddItemToGrid(grid, outputLabel, 1, 0, 1, 4);
             CreateNumberKeyboard();
+            CreateOperatorButtons();
         }
 
         private void CreateNumberKeyboard()
@@ -75,6 +76,21 @@ namespace XamarinCalculator
             var buttonClicked = (Button)sender;
             var numberKey = int.Parse(buttonClicked.Text);
             outputLabel.Text += numberKey;
+        }
+
+        private void CreateOperatorButtons()
+        {
+            SetupOperatorButton("+", 2, 3);
+            SetupOperatorButton("-", 3, 3);
+            SetupOperatorButton("*", 4, 3);
+            SetupOperatorButton("÷", 5, 3);
+            SetupOperatorButton("=", 6, 0, 4);
+        }
+
+        private void SetupOperatorButton(string operatorText, int row, int column, int columnSpan = 1)
+        {
+            var button = ButtonHelper.CreateOperatorButton(operatorText);
+            GridHelper.AddItemToGrid(grid, button, row, column, 1, columnSpan);
         }
     }
 }
