@@ -4,6 +4,8 @@ namespace XamarinCalculator.Helpers
 {
     public class ButtonHelper
     {
+        private static FontSizeConverter fontSizeConverter = new FontSizeConverter();
+
         public static Button CreateNumberButton(string text)
         {
             return CreateButton(text, Color.Black, Color.LightGray);
@@ -21,7 +23,7 @@ namespace XamarinCalculator.Helpers
                 Text = text,
                 BackgroundColor = backgroundColour,
                 TextColor = textColour,
-                FontSize = 12,
+                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Medium"),
                 CornerRadius = 0,
             };
         }
