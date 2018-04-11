@@ -90,7 +90,7 @@ namespace XamarinCalculator
         private void SetupMathOperatorButton(string operatorString, int row, int column, int columnSpan = 1)
         {
             var button = ButtonHelper.CreateOperatorButton(operatorString);
-            button.Clicked += new EventHandler(OnOperatorButtonClick);
+            button.Clicked += new EventHandler(OnMathOperatorButtonClick);
             GridHelper.AddItemToGrid(grid, button, row, column, 1, columnSpan);
         }
 
@@ -108,7 +108,7 @@ namespace XamarinCalculator
             ResetCalculator();
         }
 
-        private void OnOperatorButtonClick(object sender, EventArgs e)
+        private void OnMathOperatorButtonClick(object sender, EventArgs e)
         {
             var buttonClicked = (Button)sender;
             var operatorString = buttonClicked.Text;
