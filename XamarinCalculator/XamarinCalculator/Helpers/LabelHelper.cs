@@ -18,7 +18,7 @@ namespace XamarinCalculator.Helpers
             };
         }
 
-        public static Label CreateResultLabel(string text)
+        public static Label CreateOutputLabel(string text)
         {
             return new Label
             {
