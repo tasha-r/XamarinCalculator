@@ -11,9 +11,9 @@ namespace XamarinCalculator.Helpers
             return CreateButton(text, Color.Black, Color.LightGray);
         }
 
-        public static Button CreateOperatorButton(string text)
+        public static Button CreateOperatorButton(char operatorChar)
         {
-            return CreateButton(text, Color.White, Color.Blue);
+            return CreateButton(operatorChar.ToString(), Color.White, Color.Blue);
         }
 
         private static Button CreateButton(string text, Color textColour, Color backgroundColour)
@@ -23,7 +23,7 @@ namespace XamarinCalculator.Helpers
                 Text = text,
                 BackgroundColor = backgroundColour,
                 TextColor = textColour,
-                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Medium"),
+                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Large"),
                 CornerRadius = 0,
             };
         }
