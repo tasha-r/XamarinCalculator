@@ -54,11 +54,11 @@ namespace XamarinCalculator
             grid = GridHelper.CreateGrid(7, 4);
             GridHelper.AddItemToGrid(grid, titleLabel, 0, 0, 1, 4);
             GridHelper.AddItemToGrid(grid, outputLabel, 1, 0, 1, 4);
-            CreateNumberKeyboard();
+            CreateKeyboard();
             CreateOperatorButtons();
         }
 
-        private void CreateNumberKeyboard()
+        private void CreateKeyboard()
         {
             var baseRow = 2;
 
@@ -67,11 +67,12 @@ namespace XamarinCalculator
                 for (var column = 0; column < 3; column++)
                 {
                     var numberKey = 1 + (3 * row) + column;
-                    SetupNumberKey(numberKey.ToString(), row + baseRow, column);
+                    SetupKey(numberKey.ToString(), row + baseRow, column);
                 }
             }
 
-            SetupNumberKey("0", 5, 0, 3);
+            SetupKey("0", 5, 0, 2);
+            SetupKey(".", 5, 2);
         }
 
         private void CreateOperatorButtons()
@@ -87,10 +88,10 @@ namespace XamarinCalculator
             GridHelper.AddItemToGrid(grid, clearButton, 6, 0, 1, 3);
         }
 
-        private void SetupNumberKey(string key, int row, int column, int columnSpan = 1)
+        private void SetupKey(string key, int row, int column, int columnSpan = 1)
         {
             var button = ButtonHelper.CreateNumberButton(key);
-            button.Clicked += new EventHandler(OnNumberKeyClick);
+            button.Clicked += new EventHandler(OnKeyClick);
             GridHelper.AddItemToGrid(grid, button, row, column, 1, columnSpan);
         }
 
@@ -101,13 +102,13 @@ namespace XamarinCalculator
             GridHelper.AddItemToGrid(grid, button, row, column, 1, columnSpan);
         }
 
-        private void OnNumberKeyClick(object sender, EventArgs e)
+        private void OnKeyClick(object sender, EventArgs e)
         {
             var buttonClicked = (Button)sender;
-            var numberKey = int.Parse(buttonClicked.Text);
+            var key = buttonClicked.Text;
 
-            outputLabel.Text += numberKey;
-            currentNumber += numberKey.ToString();
+            outputLabel.Text += key;
+            currentNumber += key;
         }
 
         private void OnClearButtonClick(object sender, EventArgs e)
