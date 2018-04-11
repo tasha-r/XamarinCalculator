@@ -25,7 +25,7 @@ namespace XamarinCalculator.Helpers
                 Text = text,
                 HorizontalTextAlignment = TextAlignment.Start,
                 FontFamily = "Arial",
-                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Small"),
+                FontSize = (double)fontSizeConverter.ConvertFromInvariantString("Large"),
             };
         }
     }

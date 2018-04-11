@@ -1,18 +1,20 @@
-﻿namespace XamarinCalculator
+﻿using static XamarinCalculator.MainPage;
+
+namespace XamarinCalculator
 {
     public class CalculatorService
     {
-        public static double Calculate(double firstNumber, double secondNumber, char mathOperator)
+        public static double Calculate(double firstNumber, double secondNumber, MathOperator mathOperator)
         {
             switch (mathOperator)
             {
-                case '+':
+                case MathOperator.ADD:
                     return firstNumber + secondNumber;
-                case '-':
+                case MathOperator.SUBTRACT:
                     return firstNumber - secondNumber;
-                case '*':
+                case MathOperator.MULTIPLY:
                     return firstNumber * secondNumber;
-                case '÷':
+                case MathOperator.DIVIDE:
                     return firstNumber / secondNumber;
                 default:
                     return 0;
