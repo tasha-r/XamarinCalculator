@@ -11,9 +11,9 @@ namespace XamarinCalculator.Helpers
             return CreateButton(text, Color.Black, Color.LightGray);
         }
 
-        public static Button CreateOperatorButton(char operatorChar)
+        public static Button CreateOperatorButton(string operatorString)
         {
-            return CreateButton(operatorChar.ToString(), Color.White, Color.Blue);
+            return CreateButton(operatorString, Color.White, Color.Blue);
         }
 
         private static Button CreateButton(string text, Color textColour, Color backgroundColour)

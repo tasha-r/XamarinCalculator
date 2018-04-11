@@ -18,7 +18,6 @@ namespace XamarinCalculator
         private static double firstNumber;
         private static double secondNumber;
         private static string currentNumber;
-        private static double result;
 
         public MainPage()
         {
@@ -50,7 +49,7 @@ namespace XamarinCalculator
         private void SetupGrid()
         {
             var titleLabel = LabelHelper.CreateTitleLabel("Calculator");
-            outputLabel = LabelHelper.CreateResultLabel(string.Empty);
+            outputLabel = LabelHelper.CreateOutputLabel(string.Empty);
 
             grid = GridHelper.CreateGrid(7, 4);
             GridHelper.AddItemToGrid(grid, titleLabel, 0, 0, 1, 4);
@@ -77,11 +76,15 @@ namespace XamarinCalculator
 
         private void CreateOperatorButtons()
         {
-            SetupOperatorButton('+', 2, 3);
-            SetupOperatorButton('-', 3, 3);
-            SetupOperatorButton('*', 4, 3);
-            SetupOperatorButton('÷', 5, 3);
-            SetupOperatorButton('=', 6, 0, 4);
+            SetupMathOperatorButton("+", 2, 3);
+            SetupMathOperatorButton("-", 3, 3);
+            SetupMathOperatorButton("*", 4, 3);
+            SetupMathOperatorButton("÷", 5, 3);
+            SetupMathOperatorButton("=", 6, 3);
+
+            var clearButton = ButtonHelper.CreateOperatorButton("CLEAR");
+            clearButton.Clicked += new EventHandler(OnClearButtonClick);
+            GridHelper.AddItemToGrid(grid, clearButton, 6, 0, 1, 3);
         }
 
         private void SetupNumberKey(string key, int row, int column, int columnSpan = 1)
@@ -91,9 +94,9 @@ namespace XamarinCalculator
             GridHelper.AddItemToGrid(grid, button, row, column, 1, columnSpan);
         }
 
-        private void SetupOperatorButton(char operatorChar, int row, int column, int columnSpan = 1)
+        private void SetupMathOperatorButton(string operatorString, int row, int column, int columnSpan = 1)
         {
-            var button = ButtonHelper.CreateOperatorButton(operatorChar);
+            var button = ButtonHelper.CreateOperatorButton(operatorString);
             button.Clicked += new EventHandler(OnOperatorButtonClick);
             GridHelper.AddItemToGrid(grid, button, row, column, 1, columnSpan);
         }
@@ -105,6 +108,11 @@ namespace XamarinCalculator
 
             outputLabel.Text += numberKey;
             currentNumber += numberKey.ToString();
+        }
+
+        private void OnClearButtonClick(object sender, EventArgs e)
+        {
+            ResetCalculator();
         }
 
         private void OnOperatorButtonClick(object sender, EventArgs e)
@@ -125,7 +133,7 @@ namespace XamarinCalculator
         private void HandleEqualsButtonClick()
         {
             secondNumber = double.Parse(currentNumber);
-            result = CalculatorService.Calculate(firstNumber, secondNumber, mathOperatorClicked);
+            var result = CalculatorService.Calculate(firstNumber, secondNumber, mathOperatorClicked);
             currentNumber = result.ToString();
 
             outputLabel.Text = $"= {result}";
@@ -161,6 +169,15 @@ namespace XamarinCalculator
                     mathOperatorClicked = MathOperator.NONE;
                     break;
             }
+        }
+
+        private void ResetCalculator()
+        {
+            firstNumber = 0;
+            secondNumber = 0;
+            currentNumber = string.Empty;
+            outputLabel.Text = string.Empty;
+            mathOperatorClicked = MathOperator.NONE;
         }
     }
 }
