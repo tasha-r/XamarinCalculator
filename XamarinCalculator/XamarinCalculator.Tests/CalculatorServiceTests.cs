@@ -7,36 +7,48 @@ namespace XamarinCalculator.Tests
         [Fact]
         public void Calculate_WhenCalledWithAdditionOperator_ReturnsCorrectResult()
         {
-            var result = CalculatorService.Calculate(10, 5.5, '+');
+            SetupCalculatorService(10, 5.5, "+");
+            var result = CalculatorService.Calculate();
             Assert.Equal(15.5, result);
         }
 
         [Fact]
         public void Calculate_WhenCalledWithSubtractionOperator_ReturnsCorrectResult()
         {
-            var result = CalculatorService.Calculate(10, 5.5, '-');
+            SetupCalculatorService(10, 5.5, "-");
+            var result = CalculatorService.Calculate();
             Assert.Equal(4.5, result);
         }
 
         [Fact]
         public void Calculate_WhenCalledWithMultiplicationOperator_ReturnsCorrectResult()
         {
-            var result = CalculatorService.Calculate(10, 5, '*');
+            SetupCalculatorService(10, 5, "*");
+            var result = CalculatorService.Calculate();
             Assert.Equal(50, result);
         }
 
         [Fact]
         public void Calculate_WhenCalledWithDivisionOperator_ReturnsCorrectResult()
         {
-            var result = CalculatorService.Calculate(10, 5, '÷');
+            SetupCalculatorService(10, 5, "÷");
+            var result = CalculatorService.Calculate();
             Assert.Equal(2, result);
         }
 
         [Fact]
         public void Calculate_WhenCalledWithInvalidOperator_ReturnsCorrectResult()
         {
-            var result = CalculatorService.Calculate(10, 5, '$');
+            SetupCalculatorService(10, 5, "$");
+            var result = CalculatorService.Calculate();
             Assert.Equal(0, result);
+        }
+
+        private static void SetupCalculatorService(double firstNumber, double secondNumber, string mathOperator)
+        {
+            CalculatorService.FirstNumber = firstNumber;
+            CalculatorService.SecondNumber = secondNumber;
+            CalculatorService.UpdateMathOperator(mathOperator);
         }
     }
 }

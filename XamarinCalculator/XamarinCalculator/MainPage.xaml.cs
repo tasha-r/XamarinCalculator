@@ -6,17 +6,9 @@ namespace XamarinCalculator
 {
     public partial class MainPage : ContentPage
     {
-        public enum MathOperator
-        {
-            NONE, ADD, SUBTRACT, MULTIPLY, DIVIDE
-        }
-
         private static Grid grid;
         private static Label outputLabel;
-        private static MathOperator mathOperatorClicked = MathOperator.NONE;
 
-        private static double firstNumber;
-        private static double secondNumber;
         private static string currentNumber;
 
         public MainPage()
@@ -119,66 +111,44 @@ namespace XamarinCalculator
         private void OnOperatorButtonClick(object sender, EventArgs e)
         {
             var buttonClicked = (Button)sender;
-            var operatorChar = char.Parse(buttonClicked.Text);
+            var operatorString = buttonClicked.Text;
 
-            if (operatorChar == '=')
+            if (operatorString == "=")
             {
                 HandleEqualsButtonClick();
             }
             else
             {
-                HandleMathOperatorButtonClick(operatorChar);
+                HandleMathOperatorButtonClick(operatorString);
             }
         }
 
         private void HandleEqualsButtonClick()
         {
-            secondNumber = double.Parse(currentNumber);
-            var result = CalculatorService.Calculate(firstNumber, secondNumber, mathOperatorClicked);
+            CalculatorService.SecondNumber = double.Parse(currentNumber);
+
+            var result = CalculatorService.Calculate();
             currentNumber = result.ToString();
-
             outputLabel.Text = $"= {result}";
-            mathOperatorClicked = MathOperator.NONE;
+
+            CalculatorService.UpdateMathOperator(string.Empty);
         }
 
-        private void HandleMathOperatorButtonClick(char operatorChar)
+        private void HandleMathOperatorButtonClick(string operatorString)
         {
-            firstNumber = double.Parse(currentNumber);
+            CalculatorService.FirstNumber = double.Parse(currentNumber);
+
             currentNumber = string.Empty;
+            outputLabel.Text += $" {operatorString} ";
 
-            outputLabel.Text += $" {operatorChar} ";
-            UpdateMathOperatorClicked(operatorChar);
-        }
-
-        private void UpdateMathOperatorClicked(char operatorChar)
-        {
-            switch (operatorChar)
-            {
-                case '+':
-                    mathOperatorClicked = MathOperator.ADD;
-                    break;
-                case '-':
-                    mathOperatorClicked = MathOperator.SUBTRACT;
-                    break;
-                case '*':
-                    mathOperatorClicked = MathOperator.MULTIPLY;
-                    break;
-                case '÷':
-                    mathOperatorClicked = MathOperator.DIVIDE;
-                    break;
-                default:
-                    mathOperatorClicked = MathOperator.NONE;
-                    break;
-            }
+            CalculatorService.UpdateMathOperator(operatorString);
         }
 
         private void ResetCalculator()
         {
-            firstNumber = 0;
-            secondNumber = 0;
+            CalculatorService.Reset();
             currentNumber = string.Empty;
             outputLabel.Text = string.Empty;
-            mathOperatorClicked = MathOperator.NONE;
         }
     }
 }
