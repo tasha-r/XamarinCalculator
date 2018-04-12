@@ -4,6 +4,13 @@ namespace XamarinCalculator.Tests
 {
     public class CalculatorServiceTests
     {
+        public CalculatorServiceTests()
+        {
+            CalculatorService.FirstNumber = 0;
+            CalculatorService.SecondNumber = 0;
+            CalculatorService.UpdateMathOperator(string.Empty);
+        }
+
         [Fact]
         public void Calculate_WhenCalledWithAdditionOperator_ReturnsCorrectResult()
         {
@@ -41,6 +48,30 @@ namespace XamarinCalculator.Tests
         {
             SetupCalculatorService(10, 5, "$");
             var result = CalculatorService.Calculate();
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void Reset_WhenCalled_ResetsNumberVariables()
+        {
+            SetupCalculatorService(15, 2.25, "+");
+
+            CalculatorService.Reset();
+
+            Assert.Equal(0, CalculatorService.FirstNumber);
+            Assert.Equal(0, CalculatorService.SecondNumber);
+        }
+
+        [Fact]
+        public void Reset_WhenCalled_ResetsMathOperatorVariable()
+        {
+            SetupCalculatorService(2, 2, "+");
+            CalculatorService.Reset();
+            CalculatorService.FirstNumber = 2;
+            CalculatorService.SecondNumber = 2;
+
+            var result = CalculatorService.Calculate();
+
             Assert.Equal(0, result);
         }
 
