@@ -1,6 +1,4 @@
-﻿using static XamarinCalculator.MainPage;
-
-namespace XamarinCalculator
+﻿namespace XamarinCalculator
 {
     public class CalculatorService
     {
